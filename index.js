@@ -1,10 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const dotenv = require('dotenv');
 const bookingRoutes = require('./routes/booking');
-
-dotenv.config();
+const {MONGO_URI, PORT} = require('./config')
 
 const app = express();
 
@@ -17,7 +15,7 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use('/api/booking', bookingRoutes);
 
 // MongoDB connection
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
@@ -32,7 +30,7 @@ if (!fs.existsSync(uploadDir)) {
 }
 
 // Start server
-const PORT = process.env.PORT || 5000;
+const PORT = PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
