@@ -30,7 +30,6 @@ if (!fs.existsSync(uploadDir)) {
 }
 
 // Start server
-const PORT = PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
